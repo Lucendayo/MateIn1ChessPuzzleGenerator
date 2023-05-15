@@ -40,7 +40,8 @@ for i in range(iterations):
 
     while not board.is_game_over():
         # Get the best move for the current position from the engine
-        result = engine.play(board, chess.engine.Limit(time=2.0))
+        result = engine.play(board, chess.engine.Limit
+        (time=2.0))
 
         # Print the move and apply it to the board
         print("Move:", result.move)
