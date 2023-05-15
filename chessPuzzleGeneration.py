@@ -1,7 +1,6 @@
 import chess
 import chess.engine
 import chess.svg
-from IPython.display import display, SVG
 import os
 import sys
 import platform
