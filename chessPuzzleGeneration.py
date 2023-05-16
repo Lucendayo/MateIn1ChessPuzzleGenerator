@@ -33,6 +33,7 @@ elif operatingSystem == "Linux":
 dictsidetomove = {True:'white',False:'black'}
 notationdict = {True:'.', False:'...'}
 iterations = 1
+
 for i in range(iterations):
     print("Iteration:", i+1)
 
@@ -46,6 +47,7 @@ for i in range(iterations):
 
         # Print the move and apply it to the board
         print("Move:", result.move)
+        
         board.push(result.move)
 
         # Display the current chessboard
