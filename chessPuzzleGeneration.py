@@ -11,10 +11,8 @@ def get_operating_system():
         return "Windows"
     elif system == "Darwin":
         return "macOS"
-    elif system == "Linux":
-        return "Linux"
     else:
-        print("Error. Operating System not identified.")
+        print("Error. Operating System not identified/unsupported.")
         quit()
 
 # Get the operating system and save to operatingSystem variable
@@ -26,8 +24,12 @@ maxmoves = 100
 gamecount = 1
 path = os.getcwd()
 os.chmod(path, 0o0111)
-engine = chess.engine.SimpleEngine.popen_uci(os.path.join(path, "Stockfish"))
-
+if operatingSystem == "Windows":
+    engine = chess.engine.SimpleEngine.popen_uci(os.path.join(path, "Stockfish_Win"))
+elif operatingSystem == "macOS":
+    engine = chess.engine.SimpleEngine.popen_uci("/Applications/Stockfish.app")
+elif operatingSystem == "Linux":
+    engine = chess.engine.SimpleEngine.popen_uci(os.path.join())
 dictsidetomove = {True:'white',False:'black'}
 notationdict = {True:'.', False:'...'}
 iterations = 1
@@ -52,3 +54,4 @@ for i in range(iterations):
     print("Game over\n")
 
 # Close the engine
+engine.quit()
