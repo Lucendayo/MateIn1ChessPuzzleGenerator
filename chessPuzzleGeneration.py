@@ -24,15 +24,18 @@ maxmoves = 100
 gamecount = 1
 path = os.getcwd()
 os.chmod(path, 0o0111)
+# Assigning different Stockfish version depending on the OperatingSystem variable
 if operatingSystem == "Windows":
     engine = chess.engine.SimpleEngine.popen_uci(os.path.join(path, "Stockfish_Win"))
 elif operatingSystem == "macOS":
     engine = chess.engine.SimpleEngine.popen_uci("/Applications/Stockfish.app")
-elif operatingSystem == "Linux":
-    engine = chess.engine.SimpleEngine.popen_uci(os.path.join())
+else:
+    print("Error, operatingSystem variable null")
 dictsidetomove = {True:'white',False:'black'}
 notationdict = {True:'.', False:'...'}
 iterations = 1
+
+engine.options[{"Skill Level" : 8}]
 
 for i in range(iterations):
     print("Iteration:", i+1)
