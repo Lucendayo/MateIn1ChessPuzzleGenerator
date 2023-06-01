@@ -4,6 +4,8 @@ import chess.svg
 import os
 import sys
 import platform
+import json
+
 
 def get_operating_system():
     system = platform.system()
@@ -17,6 +19,17 @@ def get_operating_system():
 
 # Get the operating system and save to operatingSystem variable
 operatingSystem = get_operating_system()
+
+def save_positions_before_checkmate():
+    # Check if the game is still ongoing
+    if not board.is_game_over():
+        # Get the current FEN (Forsyth–Edwards Notation) representation of the board
+        current_position = board.fen()
+        []
+        # Save the current position to a file
+        with open("positions.txt", "a") as file:
+            file.write(current_position + "\n")
+
 
 arguments = sys.argv
 pondertime = 3600
@@ -35,7 +48,7 @@ dictsidetomove = {True:'white',False:'black'}
 notationdict = {True:'.', False:'...'}
 iterations = 1
 
-engine.options["Skill Level"] = 8
+engine.options["Skill Level"] = 30
 print("worked")
 for i in range(iterations):
     print("Iteration:", i+1)
@@ -45,11 +58,13 @@ for i in range(iterations):
 
     while not board.is_game_over():
         # Get the best move for the current position from the engine
-        result = engine.play(board, chess.engine.Limit(time=1))
+        result = engine.play(board, chess.engine.Limit(time=0.01))
         # Print the move and apply it to the board
         print("Move:", result.move)
         
         board.push(result.move)
+
+        save_positions_before_checkmate()
 
         # Find end and its causes
         if board.is_checkmate():
@@ -69,7 +84,8 @@ for i in range(iterations):
             print("Insufficient material! Draw! Game over.")
             engine.quit()
             break
-        
+
+
 
 
 
