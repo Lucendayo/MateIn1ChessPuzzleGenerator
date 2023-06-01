@@ -46,14 +46,10 @@ for i in range(iterations):
     while not board.is_game_over():
         # Get the best move for the current position from the engine
         result = engine.play(board, chess.engine.Limit(time=1))
-
         # Print the move and apply it to the board
         print("Move:", result.move)
         
         board.push(result.move)
-
-        # Display the current chessboard
-        print(board)
 
         # Find end and its causes
         if board.is_checkmate():
