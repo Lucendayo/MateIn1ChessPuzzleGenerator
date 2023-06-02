@@ -25,7 +25,6 @@ def save_positions_before_checkmate():
     if not board.is_game_over():
         # Get the current FEN (Forsyth–Edwards Notation) representation of the board
         current_position = board.fen()
-        []
         # Save the current position to a file
         with open("positions.txt", "a") as file:
             file.write(current_position + "\n")
